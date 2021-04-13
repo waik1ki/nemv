@@ -40,7 +40,7 @@ module.exports = app;
 const mongoose = require('mongoose');
 const User = require('./models/users');
 
-mongoose.connect('mongodb+srv://waikiki:1234@cluster0.xlf6w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://waikiki:@cluster0.xlf6w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
   useNewUrlParser : true,
   useUnifiedTopology : true,
   useCreateIndex : true,
