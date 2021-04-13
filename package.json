@@ -1,0 +1,12 @@
+{
+  "name": "nemv",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development node ./back-end/bin/www",
+    "serve": "cd front-end && yarn serve",
+    "pr": "cd front-end && yarn && yarn build && cd ../back-end && yarn && cd .. && cross-env NODE_ENV=production PORT=80 node ./back-end/bin/www"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  }
+}

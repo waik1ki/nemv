@@ -156,6 +156,8 @@
 <script>
 import axios from 'axios'
 
+console.log(process.env.NODE_ENV)
+
 export default {
 
     data () {
@@ -173,8 +175,7 @@ export default {
         snackbar: false,
         sbMsg: '',
         hidden: false,
-        putId: ''
-        
+        putId: '',
       }
 
     },
@@ -235,7 +236,7 @@ export default {
       postUser() {
         this.dialog = false
         console.log(this.userName, this.userAge)
-        axios.post('/api/user', {
+        axios.post(`${this.$apiRootPath}user`, {
           name: this.userName, age: this.userAge
         })
 
@@ -248,7 +249,7 @@ export default {
         })
       },
       getUsers () {
-        axios.get('/api/user')
+        axios.get(`${this.$apiRootPath}user`)
 
         .then((r) => {
             this.users = r.data.users
@@ -265,7 +266,7 @@ export default {
       },
       putUser() {
         this.dialog = false
-        axios.put(`/api/user/${this.putId}`, {
+        axios.put(`${this.$apiRootPath}user/${this.putId}`, {
           name: this.userName, age: this.userAge
         })
 
@@ -278,7 +279,7 @@ export default {
         })
       },
       delUser(id) {
-        axios.delete(`/api/user/${id}`)
+        axios.delete(`${this.$apiRootPath}user/${id}`)
 
         .then(() => {
           this.pop('사용자 삭제 완료.')

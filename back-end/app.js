@@ -13,7 +13,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
+if (process.env.NODE_ENV !== 'production') app.use(cors());
 app.use('/api', require('./routes/api'));
 
 app.use(express.static(path.join(__dirname, '../', 'front-end', 'dist')));
@@ -40,7 +40,11 @@ module.exports = app;
 const mongoose = require('mongoose');
 const User = require('./models/users');
 
-mongoose.connect('mongodb+srv://waikiki:1234@cluster0.xlf6w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',{
+
+const cfg = require('../config/')
+console.log(cfg)
+
+mongoose.connect(cfg.dbUrl,{
   useNewUrlParser : true,
   useUnifiedTopology : true,
   useCreateIndex : true,
@@ -71,5 +75,3 @@ mongoose.connect('mongodb+srv://waikiki:1234@cluster0.xlf6w.mongodb.net/myFirstD
   //   .catch(r=> console.error(e))
   // 데이터 생성
 });
-
-
